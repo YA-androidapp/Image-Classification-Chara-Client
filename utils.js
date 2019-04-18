@@ -1,9 +1,10 @@
-let faceCascadeFile = 'haarcascade_frontalface_default.xml';
-// let faceCascadeFile = 'lbpcascade_animeface.xml';
+// let faceCascadeFile = 'haarcascade_frontalface_default.xml';
+let faceCascadeFile = 'lbpcascade_animeface.xml';
 
 // ////////////////////
 
-classes = [1, 5];
+//TODO: エクスポート結果ファイルに記載の正解ラベルを転記する
+classes = ['1', '5'];
 
 // ////////////////////
 
@@ -113,7 +114,8 @@ detect.addEventListener('click', () => {
     let faceCascade = new cv.CascadeClassifier();
     faceCascade.load(faceCascadeFile);
     let msize = new cv.Size(100, 100);
-    faceCascade.detectMultiScale(gray, faces, 1.1, 1, 0, msize, msize);
+    faceCascade.detectMultiScale(gray, faces, 1.1, 1, 0, msize);
+    console.log('Count: ' + faces.size());
     for (let i = 0; i < faces.size(); ++i) {
         let roiGray = gray.roi(faces.get(i));
         let roiSrc = src.roi(faces.get(i));
