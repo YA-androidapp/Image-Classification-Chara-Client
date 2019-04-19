@@ -1,10 +1,24 @@
 // let faceCascadeFile = 'haarcascade_frontalface_default.xml';
 let faceCascadeFile = 'lbpcascade_animeface.xml';
-
 // ////////////////////
 
-//TODO: エクスポート結果ファイルに記載の正解ラベルを転記する
-classes = ['1', '5'];
+//TODO: エクスポート結果ファイルに記載の正解ラベルを転記するか、tfjsディレクトリ内にclass.jsonを用意
+classes = []; // (ex.) ['1', '5'];
+
+if (classes.length == 0) {
+    httpObj = new XMLHttpRequest();
+    httpObj.open("get", "./tfjs/class.json", true);
+    httpObj.responseType = 'json';
+    httpObj.onload = function () {
+        var res = this.response;
+        Object.keys(res).forEach(function (key) {
+            console.log(key + " " + res[key] + ";");
+            classes.push(res[key]);
+        });
+        console.log(classes);
+    }
+}
+httpObj.send(null);
 
 // ////////////////////
 
