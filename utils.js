@@ -17,9 +17,8 @@ if (classes.length == 0) {
         });
         console.log(classes);
     }
+    httpObj.send(null);
 }
-httpObj.send(null);
-
 // ////////////////////
 
 const modelPromise = tf.loadModel('./tfjs/model.json');
